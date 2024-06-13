@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package mainPackage;
 
-/**
- *
- * @author marti
- */
 public class CalculadoraGUI extends javax.swing.JFrame {  
     
     /*
     Creo variables para guardar texto de pantalla y luego trabajar con estas 
     */
-    public float primerComponente;
-    public float segundoComponent;
+    public Float primerComponente;
+    public Float segundoComponente;
     public String operador;
+    public Float resultado;
+    public String muestra;
     
     
     /**
@@ -341,6 +336,11 @@ public class CalculadoraGUI extends javax.swing.JFrame {
     private void limpiadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiadorActionPerformed
         // TODO add your handling code here:
         this.pantalla.setText("");
+        primerComponente = null;
+        segundoComponente = null;
+        resultado = null;
+        muestra = null;
+        
     }//GEN-LAST:event_limpiadorActionPerformed
 
     private void botonRestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRestaActionPerformed
@@ -379,8 +379,21 @@ public class CalculadoraGUI extends javax.swing.JFrame {
 
     private void botonSumaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSumaActionPerformed
         // TODO add your handling code here:
-        this.primerComponente = Float.parseFloat(this.pantalla.getText());
-        this.operador = "+";
+        if (primerComponente == null){
+            this.pantalla.setText("0");
+            this.primerComponente = Float.valueOf(this.pantalla.getText());
+            this.pantalla.setText("");
+        }else{
+            this.segundoComponente = Float.valueOf(this.pantalla.getText());
+            this.pantalla.setText("");
+        }
+        if(segundoComponente != null){
+            resultado = primerComponente + segundoComponente;
+            muestra = resultado.toString();
+            this.pantalla.setText(muestra);
+            segundoComponente = null;
+        }
+        
         
     }//GEN-LAST:event_botonSumaActionPerformed
 
